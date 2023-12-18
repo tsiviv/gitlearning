@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.io Example</title>
+</head>
+
+<body>
+  <form id="myForm">
+    <label for="textInput">Enter Text:</label>
+    <input type="text" id="textInput" name="textInput"><br>
+    <label for="textInput">Enter name:</label>
+    <input type="text" id="name" name="textInput">
+    <select name="cars" id="cars">
+      <option value="general">general</option>
+      <option value="family">family</option>
+      <option value="friends">friends</option>
+    </select>
+    <button type="button" onclick="join()">join</button>
+
+    <button type="button" onclick="displayInput()">Submit</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+
+</html>
