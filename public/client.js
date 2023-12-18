@@ -10,13 +10,14 @@ const socket = io('http://localhost:3001', {
   },
 });
 
-// function displayInput() {
+function SendMessage() {
 
- 
-//   const inputValue = document.getElementById('textInput').value;
-//   // socket.query.username = document.getElementById('name').value
-//   socket.emit('message', inputValue);
-// }
+  const group = document.getElementById('group').value;
+
+  const inputValue = document.getElementById('textInput').value;
+  // socket.query.username = document.getElementById('name').value
+  socket.emit('message', inputValue,group);
+}
 function join() {
   const group = document.getElementById('cars').value;
   console.log(group)

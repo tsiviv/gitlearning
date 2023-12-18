@@ -9,20 +9,28 @@
 
 <body>
   <form id="myForm">
-    <label for="textInput">Enter Text:</label>
+    <label for="textInput">who are you?</label>
+    <input type="text" id="textInput" name="name"><br>
+    <label for="textInput">Enter message:</label>
     <input type="text" id="textInput" name="textInput"><br>
-    <label for="textInput">Enter name:</label>
-    <input type="text" id="name" name="textInput">
+    <label>what group you want to join?</label>
     <select name="cars" id="cars">
       <option value="general">general</option>
       <option value="family">family</option>
       <option value="friends">friends</option>
     </select>
-    <button type="button" onclick="join()">join</button>
+    <button type="button" onclick="join()">join</button><br><br>
+    <label>send message to </label>
+    <select name="cars" id="group">
+      <option value="general">general</option>
+      <option value="family">family</option>
+      <option value="friends">friends</option>
+    </select>
+    <button type="button" onclick="SendMessage()">join</button><br><br>
 
-    <button type="button" onclick="displayInput()">Submit</button>
   </form>
-
+  <label>who do you want to talk with?</label>
+  <input >
   <div id="output"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
