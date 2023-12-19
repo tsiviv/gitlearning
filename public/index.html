@@ -8,13 +8,13 @@
 </head>
 
 <body>
+
   <form id="myForm">
-    <label for="textInput">who are you?</label>
-    <input type="text" id="textInput" name="name"><br>
+
     <label for="textInput">Enter message:</label>
     <input type="text" id="textInput" name="textInput"><br>
     <label>what group you want to join?</label>
-    <select name="cars" id="cars">
+    <select name="rooms" id="rooms">
       <option value="general">general</option>
       <option value="family">family</option>
       <option value="friends">friends</option>
@@ -26,15 +26,22 @@
       <option value="family">family</option>
       <option value="friends">friends</option>
     </select>
-    <button type="button" onclick="SendMessage()">join</button><br><br>
+    <button type="button" onclick="SendMessage()">send</button><br><br>
 
   </form>
-  <label>who do you want to talk with?</label>
-  <input >
-  <div id="output"></div>
 
+  <label>who do you want to talk with?</label>
+  <select name="cars" id="users">
+    <option value="tami">Tamar</option>
+    <option value="racheli">Rachel</option>
+  </select>
+  <button type="button" onclick="talk()">send</button><br><br>
+  <button onclick="addRoom()">add new room</button><br><br>
+  <input type="text" id="newroom" name="textInput"><br>
+  <div id="output"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
   <script src="client.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </body>
 
 </html>
