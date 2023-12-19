@@ -9,7 +9,7 @@ const getUser = async (name) => {
         throw error;
     }
 };
-const getUsers = async (req, res) => {
+const getUsers = async () => {
     try {
       // Your getUsers logic using the pool.query
       const result = await pool.query('SELECT * FROM users');

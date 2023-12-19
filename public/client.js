@@ -80,7 +80,7 @@ function SendMessage() {
 }
 function talk() {
 
-  const friend = document.getElementById('friend').value;
+  const friend = document.getElementById('users').value;
   socket.emit('talk', friend);
 }
 function join() {

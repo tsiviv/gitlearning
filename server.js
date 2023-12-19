@@ -58,7 +58,8 @@ io.on('connection', async (socket) => {
   socket.on('talk', async (friend) => {
     socket.join(`${username} and ${friend}`);
     console.log(userId)
-    await usersRoomsquery.postuserRoom(userId, `${username} and ${friend}`)
+    const room = await roomsQuery.postRoom(friend)
+    await usersRoomsquery.postuserRoom(userId, room.id)
     const responseMessage = ` ${username} wants to talk with you`;
     const user = await usersQuery.getUser(friend)
     io.to(user.socketid).emit('inventation', responseMessage, `${username} and ${friend}`);
