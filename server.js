@@ -1,12 +1,24 @@
 // app.js
 const express = require('express');
-const http = require('http');
-const socketIO = require('socket.io');
 const app = express();
-const server = http.createServer(app);
-const io = socketIO(server);
+
+const socketIO = require('socket.io');
 const cors = require('cors');
 app.use(cors());
+const http = require('http');
+
+const server = http.createServer(app);
+const Server = socketIO(server);
+
+// Use cors middleware for express routes
+app.use(cors());
+
+// Set up Socket.IO server with CORS options
+const io = new socketIO.Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+  },
+});
 app.use(express.static('public'));
 const c = require("./node/tables/roomsTable")
 const c1 = require("./node/tables/usersTable")
@@ -23,12 +35,8 @@ io.on('connection', async (socket) => {
   const userId = socket.handshake.query.userId;
   const username = socket.handshake.query.username;
   const user = await usersQuery.postUser(userId, username, socket.id)
-  console.log("khj")
-  // const hisRooms=await usersRoomsquery.getUserRooms(userId)
-  // console.log(hisRooms)
-  // io.to(socket.id).emit('updateRooms', hisRooms);
-
   socket.on('join', async (group, nameRoom) => {
+    console.log("join")
     const responseMessage = `new user to ${nameRoom}`;
     socket.join(nameRoom);
     await usersRoomsquery.postuserRoom(userId, group)
