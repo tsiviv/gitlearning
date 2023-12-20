@@ -20,22 +20,27 @@ async function Restart() {
   const response = await fetch('http://18.116.57.209/user');
   const users = await response.json();
   console.log(users)
-  displayUsers(users)
+  display(users, "users")
 
   const response1 = await fetch('http://18.116.57.209/rooms');
   const rooms = await response1.json();
   console.log(rooms)
-  displayRooms(rooms)
+  displayRooms(rooms, "rooms")
+  restartRoomsUser()
 }
+function restartRoomsUser() {
+  socket.emit('userRooms');
+}
+socket.on('userRooms', (rooms) => {
+  displayRooms(rooms, "group")
+})
 function addRoom() {
   const room = document.getElementById("newroom").value; // Replace with your actual selector
   console.log(room)
-  socket.emit('addroom',room);
-
-  //send to post room
+  socket.emit('addroom', room);
 }
-function displayUsers(users) {
-  const selectEl = document.getElementById("users"); // Replace with your actual selector
+function display(users, element) {
+  const selectEl = document.getElementById(element); // Replace with your actual selector
   selectEl.innerHTML = "";
   users.forEach((user) => {
     const optionEl = document.createElement("option");
@@ -44,8 +49,8 @@ function displayUsers(users) {
     selectEl.appendChild(optionEl);
   });
 }
-function displayRooms(rooms) {
-  const selectEl = document.getElementById("rooms"); // Replace with your actual selector
+function displayRooms(rooms, element) {
+  const selectEl = document.getElementById(element); // Replace with your actual selector
   selectEl.innerHTML = "";
   rooms.forEach((room) => {
     const optionEl = document.createElement("option");
@@ -54,21 +59,8 @@ function displayRooms(rooms) {
     selectEl.appendChild(optionEl);
   });
 }
-function displayUserRooms(rooms) {
-  const selectEl = document.getElementById("group"); // Replace with your actual selector
-  selectEl.innerHTML = "";
-  rooms.forEach((room) => {
-    const optionEl = document.createElement("option");
-    optionEl.value = room.id; // Set value to room ID
-    optionEl.textContent = room.roomname; // Set text to room name
-    selectEl.appendChild(optionEl);
-  });
-}
-// Example usage
 
 
-// const user = await axios.get("http://18.116.57.209/user")
-// console.log(user)
 
 function SendMessage() {
 

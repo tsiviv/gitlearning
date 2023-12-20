@@ -37,7 +37,7 @@ io.on('connection', async (socket) => {
   })
   socket.on('addroom', async (nameRoom) => {
     const room = await roomsQuery.postRoom(nameRoom)
-    if (room ==`room ${nameRoom} exist already`)
+    if (room == `room ${nameRoom} exist already`)
       io.to(socket.id).emit(`room ${nameRoom} exist already`)
     else
       io.to(socket.id).emit('added', `${nameRoom} group added`)
@@ -49,6 +49,12 @@ io.on('connection', async (socket) => {
     socket._currentRoom = group;
     io.to(nameRoom).emit('message', responseMessage)
   })
+
+  socket.on('userRooms', async () => {
+    const rooms = await usersRoomsquery.getUserRooms(userId)
+    console.log(rooms)
+    io.to(socket.id).emit('userRooms', rooms);
+  });
 
   socket.on('message', (message, group) => {
     const responseMessage = ` ${username} says:   ${message}`;

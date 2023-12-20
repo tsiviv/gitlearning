@@ -5,43 +5,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Socket.io Example</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
+  <form id="chatForm">
+    <fieldset>
+      <legend>Compose Message</legend>
+      <label for="messageInput">Enter message:</label>
+      <input type="text" id="messageInput" name="messageInput"><br>
+    </fieldset>
 
-  <form id="myForm">
+    <fieldset>
+      <legend>Room Selection</legend>
+      <label for="roomSelection">Choose a room to join:</label>
+      <select name="rooms" id="roomSelection">
+        <option value="general">General</option>
+        <option value="family">Family</option>
+        <option value="friends">Friends</option>
+      </select>
+      <button type="button" onclick="joinRoom()">Join</button><br><br>
+    </fieldset>
 
-    <label for="textInput">Enter message:</label>
-    <input type="text" id="textInput" name="textInput"><br>
-    <label>what group you want to join?</label>
-    <select name="rooms" id="rooms">
-      <option value="general">general</option>
-      <option value="family">family</option>
-      <option value="friends">friends</option>
-    </select>
-    <button type="button" onclick="join()">join</button><br><br>
-    <label>send message to </label>
-    <select name="cars" id="group">
-      <option value="general">general</option>
-      <option value="family">family</option>
-      <option value="friends">friends</option>
-    </select>
-    <button type="button" onclick="SendMessage()">send</button><br><br>
-
+    <fieldset>
+      <legend>Recipient Selection</legend>
+      <label for="userSelection">Send message to:</label>
+      <select name="users" id="userSelection">
+        <option value="tami">Tamar</option>
+        <option value="racheli">Rachel</option>
+      </select>
+      <button type="button" onclick="sendMessage()">Send</button><br><br>
+    </fieldset>
   </form>
 
-  <label>who do you want to talk with?</label>
-  <select name="cars" id="users">
-    <option value="tami">Tamar</option>
-    <option value="racheli">Rachel</option>
-  </select>
-  <button type="button" onclick="talk()">send</button><br><br>
-  <button onclick="addRoom()">add new room</button><br><br>
-  <input type="text" id="newroom" name="textInput"><br>
-  <div id="output"></div>
+
+  <fieldset>
+    <legend>New friend</legend>
+    <label>who do you want to talk with?</label>
+    <select name="cars" id="users">
+      <option value="tami">Tamar</option>
+      <option value="racheli">Rachel</option>
+    </select>
+    <button type="button" onclick="talk()">send</button><br><br>
+  </fieldset>
+  <fieldset>
+    <legend>New Room</legend>
+    <label for="newRoomName">Room name:</label>
+    <input type="text" id="newRoomName" name="newRoomName"><br>
+    <button type="button" onclick="addRoom()">Create Room</button><br><br>
+  </fieldset>
+  <div id="messageOutput"></div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
   <script src="client.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles.css">
 </body>
 
 </html>
