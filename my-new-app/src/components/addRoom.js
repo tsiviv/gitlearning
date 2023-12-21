@@ -1,18 +1,23 @@
 import { useEffect } from "react";
+import Button from '@mui/material/Button';
+import { Input } from '@mui/material';
+import { InputLabel } from '@mui/material';
+
+
 
 function Addroomc({ setNewRoom,handleAddRoom,newRoom}) {
     const handleNewRoomChange = (event) => {
         setNewRoom(event.target.value);
     };
     return (<>
-         <label htmlFor="newroom">Enter new room:</label>
-      <input
+         <InputLabel htmlFor="newroom">Enter new room:</InputLabel>
+      <Input
         type="text"
         id="newroom"
         value={newRoom}
         onChange={handleNewRoomChange}
       />
-      <button onClick={handleAddRoom}>Add Room</button> 
+      <Button onClick={handleAddRoom}>Add Room</Button> 
     </>)
 }
 export default Addroomc;

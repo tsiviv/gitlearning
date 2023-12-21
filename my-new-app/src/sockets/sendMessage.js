@@ -6,13 +6,15 @@ const SendMessage = ({ socket, selectRoomUser }) => {
 
     const sendMessage = () => {
         // Assuming you have a socket instance
+        alert("good gue")
+        console.log(messages,inputValue,selectRoomUser )
         socket.emit('message', inputValue, selectRoomUser);
     };
 
     // Set up socket event listener for 'message'
     socket.on('message', (message) => {
         // Update the state with the new message
-        setMessages((prevMessages) => [...prevMessages, message]);
+        setMessages([message,...messages]);
     });
 
     return (

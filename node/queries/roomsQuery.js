@@ -2,7 +2,7 @@ const pool = require("../../connection");
 
 const getRoomId = async (roomName) => {
     try {
-        console.log("rooms",roomName)
+        console.log("rooms", roomName)
         const result = await pool.query('SELECT * FROM rooms WHERE roomName = $1', [roomName]);
         console.log(result.rows)
         return result.rows[0]; // Use [0] to get the first row if it0000000 exists
@@ -22,7 +22,7 @@ const postRoom = async (room) => {
             throw error;
         }
     }
-    else return `room ${room} exist already`
+    else return { message: `room ${room} exist already`, id: Room.id }
 };
 const getrooms = async () => {
     try {

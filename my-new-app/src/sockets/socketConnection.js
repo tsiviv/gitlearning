@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import Invitations from './invetation'
 import Addroom from "./addroom";
 import UserRooms from "./userRooms";
-import Restart from '../restart';
+import Restart from '../restart'
 import SendMessage from "./sendMessage";
 import Join from "./join";
 const params = new URLSearchParams(window.location.search);
@@ -31,20 +31,15 @@ const Chat = () => {
     socket.on("connect", () => {
       console.log("Connected to server");
     });
-
-    // Cleanup on unmount
-    // return () => {
-    //   socket.disconnect();
-    // };
   }, []);
 
   return (<>
-    <Restart setrooms={setrooms} setusers={setusers} rooms={rooms} users={users} setselectRoom={setselectRoom} setselectUser={setselectUser} setselectRoomtext={setselectRoomtext}>  </Restart>
+    <Restart setrooms={setrooms} setusers={setusers} rooms={rooms} users={users} setselectRoom={setselectRoom} setselectUser={setselectUser} setselectRoomtext={setselectRoomtext} setselectRoomUser={setselectRoomUser}>  </Restart>
+    <Join socket={socket} selectRoom={selectRoom} selectRoomtext={selectRoomtext}></Join>
     <Invitations socket={socket} selectUser={selectUser}></Invitations>
     <Addroom socket={socket}></Addroom>
-    <UserRooms socket={socket} setRoomsUser={setRoomsUser} RoomsUser={RoomsUser}></UserRooms>
+    <UserRooms setrooms={setrooms}socket={socket} setRoomsUser={setRoomsUser} RoomsUser={RoomsUser} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext} setselectRoomUser={setselectRoomUser}></UserRooms>
     <SendMessage selectRoomUser={selectRoomUser} socket={socket}></SendMessage>
-    <Join socket={socket} selectRoom={selectRoom} selectRoomtext={selectRoomtext}></Join>
   </>);
 };
 

@@ -19,7 +19,7 @@ const fetchData = async (setusers, setrooms) => {
   }
 };
 
-const Restart = ({ setselectRoomtext, setrooms, setusers, rooms, users, setselectRoom, setselectUser }) => {
+const Restart = ({setselectRoomUser, setselectRoomtext, setrooms, setusers, rooms, users, setselectRoom, setselectUser }) => {
   useEffect(() => {
     fetchData(setusers, setrooms);
   }, [setusers, setrooms]);
@@ -29,7 +29,7 @@ const Restart = ({ setselectRoomtext, setrooms, setusers, rooms, users, setselec
       {users && rooms ? (
         <>
           <Users users={users} setselectUser={setselectUser} />
-          <Rooms rooms={rooms} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext} />
+          <Rooms who="choose a room to connect" setselectRoomUser={setselectRoomUser} rooms={rooms} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext} />
         </>
       ) : (
         // Render a loading state or handle the loading scenario as needed

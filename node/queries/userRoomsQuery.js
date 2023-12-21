@@ -11,6 +11,9 @@ async function getUserRooms(userId) {
 
   try {
     const result = await pool.query(query, [userId]);
+    console.log("roomuser")
+    console.log( result.rows)
+
     return result.rows;
   } catch (error) {
     console.error('Error executing query:', error);
@@ -20,8 +23,9 @@ async function getUserRooms(userId) {
 
 const postuserRoom = async (userId, nameRoom) => {
   try {
-   
+   console.log("jhdslgh")
     const result = await pool.query('INSERT INTO usersrooms (userId,roomId) VALUES ($1,$2) RETURNING *', [userId, nameRoom]);
+    console.log(result.rows)
     return result.rows;
   } catch (error) {
     console.error('Error executing query', error);

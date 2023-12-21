@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Rooms from '../components/rooms';
-const UserRooms = ({ socket, setRoomsUser, RoomsUser }) => {
+const UserRooms = ({ setrooms,socket,setRoomsUser, RoomsUser, setselectRoom,setselectRoomtext,setselectRoomUser }) => {
+    useEffect(() => { if (RoomsUser && RoomsUser.length > 0) { setselectRoomUser(RoomsUser[0].roomname);  } })
 
     useEffect(() => {
         // Initial load of rooms
@@ -8,7 +9,7 @@ const UserRooms = ({ socket, setRoomsUser, RoomsUser }) => {
 
         // Set up socket event listener for 'userRooms'
         socket.on('userRooms', (updatedRooms) => {
-            console.log(updatedRooms)
+            console.log("updatedRooms")
             setRoomsUser(updatedRooms)
         });
         // Cleanup socket event listener when component unmounts
@@ -26,7 +27,7 @@ const UserRooms = ({ socket, setRoomsUser, RoomsUser }) => {
 
     return (
         <div>
-            <Rooms rooms={RoomsUser}></Rooms>
+            <Rooms who="choose a room from your connected rooms" rooms={RoomsUser} setrooms={setrooms} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext}></Rooms>
         </div>
     );
 };

@@ -16,7 +16,7 @@ app.use(cors());
 // Set up Socket.IO server with CORS options
 const io = new socketIO.Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3001',
   },
 });
 app.use(express.static('public'));
@@ -40,16 +40,19 @@ io.on('connection', async (socket) => {
     const responseMessage = `new user to ${nameRoom}`;
     socket.join(nameRoom);
     await usersRoomsquery.postuserRoom(userId, group)
-    socket._currentRoom = group;
     io.to(nameRoom).emit('message', responseMessage)
   })
   socket.on('addroom', async (nameRoom) => {
-    const room = await roomsQuery.postRoom(nameRoom)
-    if (room == `room ${nameRoom} exist already`)
-      io.to(socket.id).emit(`room ${nameRoom} exist already`)
-    else
-      io.to(socket.id).emit('added', `${nameRoom} group added`)
-  })
+    console.log("add");
+    const room = await roomsQuery.postRoom(nameRoom);
+  
+    if (typeof room === "object") {
+      io.to(socket.id).emit('roomExists', { message: `Room ${nameRoom} already exists` });
+    } else {
+      io.to(socket.id).emit('added', { message: `${nameRoom} group added` });
+    }
+  });
+  
   socket.on('room', async (group, nameRoom) => {
     const responseMessage = `new user to ${nameRoom}`;
     socket.join(nameRoom);
@@ -66,6 +69,7 @@ io.on('connection', async (socket) => {
 
   socket.on('message', (message, group) => {
     const responseMessage = ` ${username} says:   ${message}`;
+    console.log(group)
     io.to(group).emit('message', responseMessage);
   });
 
@@ -73,6 +77,7 @@ io.on('connection', async (socket) => {
     socket.join(`${username} and ${friend}`);
     console.log(userId)
     const room = await roomsQuery.postRoom(friend)
+    console.log(room)
     await usersRoomsquery.postuserRoom(userId, room.id)
     const responseMessage = ` ${username} wants to talk with you`;
     const user = await usersQuery.getUser(friend)
