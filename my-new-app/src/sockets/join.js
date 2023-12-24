@@ -12,7 +12,7 @@ function Join({ socket, selectRoom, selectRoomtext }) {
     });
 
     return <>
-        <Joinc joinus={joinus} message={message}></Joinc>
+        <Joinc joinus={joinus} message={message} selectRoomtext={selectRoomtext}></Joinc>
     </>
 }
 export default Join;

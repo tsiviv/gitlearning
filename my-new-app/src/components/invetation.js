@@ -14,7 +14,7 @@ const Invitation = ({ message, group, onJoinFriend }) => {
   };
   return (
    flag? <div>
-      <ChatMessage message={message}></ChatMessage>
+      <ChatMessage message={message} flag={true}></ChatMessage>
       <Button onClick={handleJoinFriend}>i want to join to {group}</Button>
       <Button onClick={handleNotJoinFriend}>i am sorry i dont want to join {group}</Button>
     </div>:<></>

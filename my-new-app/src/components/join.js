@@ -5,19 +5,13 @@ import { Box, TextField, Button, List, ListItem } from '@mui/material';
 
 import ChatMessage from "./Message";
 
-function Joinc({ joinus, message }) {
+function Joinc({ joinus, message,selectRoomtext }) {
 
   return (<>
-    <ChatMessage message={message}></ChatMessage>
-    <Box
-      sx={{
-        position: 'absolute',
-        bottom: '30px', /* Adjust as needed */
-        left: '50%',
-        transform: 'translateX(-50%)', /* Center horizontally */
-      }}
-    >
-      <Button onClick={joinus}>join this room</Button>
-    </Box>    </>)
+    
+    
+      <Button onClick={joinus}>join {selectRoomtext} room</Button>
+      <ChatMessage message={message}></ChatMessage>
+      </>)
 }
 export default Joinc;

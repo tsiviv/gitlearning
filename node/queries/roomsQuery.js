@@ -16,7 +16,7 @@ const postRoom = async (room) => {
     if (!Room) {
         try {
             const result = await pool.query('INSERT INTO rooms (roomName) VALUES ($1) RETURNING *', [room]);
-            return result.rows; // Use [0] to get the first row if it exists
+            return { message: `room ${room} added`, room:result.rows}; // Use [0] to get the first row if it exists
         } catch (error) {
             console.error('Error executing query', error);
             throw error;

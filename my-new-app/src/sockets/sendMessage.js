@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import SendMessages from '../components/sendMessages';
-const SendMessage = ({ socket, selectRoomUser }) => {
-    const [messages, setMessages] = useState([]);
+const SendMessage = ({ socket, selectRoomUser,selectRoomUsertext }) => {
+    const [messages, setMessages] = useState("");
     const [inputValue, setInputValue] = useState('');
 
     const sendMessage = () => {
         // Assuming you have a socket instance
-        alert("good gue")
-        console.log(messages,inputValue,selectRoomUser )
-        socket.emit('message', inputValue, selectRoomUser);
+        console.log(selectRoomUser,inputValue,selectRoomUsertext )
+        socket.emit('message', inputValue, selectRoomUsertext);
     };
 
     // Set up socket event listener for 'message'
     socket.on('message', (message) => {
-        // Update the state with the new message
-        setMessages([message,...messages]);
+        console.log(message)
+        setMessages(message);
     });
 
     return (

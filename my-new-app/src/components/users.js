@@ -11,11 +11,11 @@ function Users({ users, setselectUser }) {
         setselectUser(selectedUser);
 
     };
-    useEffect(() => { if (users) setselectUser(users[0].name) }
+    useEffect(() => { if (users) setselectUser(users[0].name) },[]
     )
     return (
-        <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">users</InputLabel>
+        <FormControl sx={{ maxWidth: '400px', width: '100%' }}>
+            <InputLabel id="demo-simple-select-label">choose user to invent him</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -27,9 +27,9 @@ function Users({ users, setselectUser }) {
                         {user.name}
                     </MenuItem>
                 ))}
-
             </Select>
         </FormControl>
+
 
     );
 }

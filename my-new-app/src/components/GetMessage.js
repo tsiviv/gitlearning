@@ -10,15 +10,15 @@ const ChatInput = ({messages}) => {
   }, []);
 
  
-  return (
-    <Box>
-      <List sx={{ overflowY: 'scroll', height: '300px' }}>
-        {messages.map((message) => (
-          <ListItem key={message.id}>{message.username}: {message.message}</ListItem>
-        ))}
-      </List>
+  return (<></>
+    // <Box>
+    //   <List sx={{ overflowY: 'scroll', height: '300px' }}>
+    //     {messages.map((message) => (
+    //       <ListItem key={message.id}>{message.username}: {message.message}</ListItem>
+    //     ))}
+    //   </List>
       
-    </Box>
+    // </Box>
   );
 };
 

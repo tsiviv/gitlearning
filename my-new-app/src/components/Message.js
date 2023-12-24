@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, List, ListItem } from '@mui/material';
+import React from 'react';
+import { Box, Paper } from '@mui/material';
 
-const ChatMessage = ({message}) => {
-
- 
-  return (<>
-  
-  </>
-    // <Box>
-    //   <List sx={{ overflowY: 'scroll', height: '300px' }}>
-    //     {messages.map((message) => (
-    //       <ListItem key={message.id}>{message.username}: {message.message}</ListItem>
-    //     ))}
-    //   </List>
+const ChatMessage = ({ message,flag }) => {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh', // Set the height to full viewport height
+      }}
+    >
+      <Paper elevation={3} sx={{ padding: 2, maxWidth: '400px' }}>
+        {/* Your ChatMessage content goes here */}
+        {message}
+      </Paper>
       
-    // </Box>
+    </Box>
   );
 };
 

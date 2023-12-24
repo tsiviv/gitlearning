@@ -21,10 +21,11 @@ const Chat = () => {
   const [users, setusers] = useState()
   const [rooms, setrooms] = useState()
   const [RoomsUser, setRoomsUser] = useState()
-  const [selectRoomUser, setselectRoomUser] = useState()
+  const [selectRoomUser, setselectRoomUser] = useState(1)
   const [selectUser, setselectUser] = useState()
   const [selectRoom, setselectRoom] = useState()
   const [selectRoomtext, setselectRoomtext] = useState()
+  const [selectRoomUsertext, setselectRoomUsertext] = useState("")
 
   useEffect(() => {
     // Your socket.io code here
@@ -34,12 +35,10 @@ const Chat = () => {
   }, []);
 
   return (<>
-    <Restart setrooms={setrooms} setusers={setusers} rooms={rooms} users={users} setselectRoom={setselectRoom} setselectUser={setselectUser} setselectRoomtext={setselectRoomtext} setselectRoomUser={setselectRoomUser}>  </Restart>
-    <Join socket={socket} selectRoom={selectRoom} selectRoomtext={selectRoomtext}></Join>
-    <Invitations socket={socket} selectUser={selectUser}></Invitations>
+    <Restart socket={socket} selectRoom={selectRoom} selectUser={selectUser}selectRoomtext={selectRoomtext} setrooms={setrooms} setusers={setusers} rooms={rooms} users={users} setselectRoom={setselectRoom} setselectUser={setselectUser} setselectRoomtext={setselectRoomtext} setselectRoomUser={setselectRoomUser}>  </Restart>
     <Addroom socket={socket}></Addroom>
-    <UserRooms setrooms={setrooms}socket={socket} setRoomsUser={setRoomsUser} RoomsUser={RoomsUser} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext} setselectRoomUser={setselectRoomUser}></UserRooms>
-    <SendMessage selectRoomUser={selectRoomUser} socket={socket}></SendMessage>
+    <UserRooms selectRoomUsertext={selectRoomUsertext}setselectRoomUsertext={setselectRoomUsertext} selectRoomUser={selectRoomUser} setrooms={setrooms}socket={socket} setRoomsUser={setRoomsUser} RoomsUser={RoomsUser} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext} setselectRoomUser={setselectRoomUser}></UserRooms>
+    <SendMessage selectRoomUsertext={selectRoomUsertext}selectRoomUser={selectRoomUser} socket={socket}></SendMessage>
   </>);
 };
 

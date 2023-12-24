@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import React from 'react';
 import { Box, TextField } from '@mui/material';
 import ChatInput from './GetMessage';
+import ChatMessage from './Message';
 function SendMessages({ sendMessage, messages, setInputValue, inputValue }) {
     return <><div>
         {/* Your component UI */}
@@ -10,17 +11,12 @@ function SendMessages({ sendMessage, messages, setInputValue, inputValue }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                position: 'absolute',
-                bottom: '30px',
-                left: '50%',
-                transform: 'translate(-50%, 50%)',
-                maxWidth: '400px', /* Adjust this for overall container width if needed */
-                padding: '10px',
-                backgroundColor: '#f0f0f0',
+                // height: '100vh', // Set the height to full viewport height
+                // backgroundColor: '#f0f0f0',
             }}
         >
             <TextField
-                sx={{ width: '500px' }} /* Set input field width independently */
+                sx={{ width: '500px' }}
                 variant="outlined"
                 placeholder="Type your message..."
                 value={inputValue}
@@ -32,8 +28,9 @@ function SendMessages({ sendMessage, messages, setInputValue, inputValue }) {
                 }}
             />
         </Box>
-        <ChatInput messages={messages}></ChatInput>
 
-    </div></>
+
+        <ChatMessage message={messages}></ChatMessage>
+    </div ></>
 }
 export default SendMessages;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Rooms from '../components/rooms';
-const UserRooms = ({ setrooms,socket,setRoomsUser, RoomsUser, setselectRoom,setselectRoomtext,setselectRoomUser }) => {
-    useEffect(() => { if (RoomsUser && RoomsUser.length > 0) { setselectRoomUser(RoomsUser[0].roomname);  } })
+import UserRoomsc from '../components/userRooms';
+const UserRooms = ({selectRoomUsertext,setselectRoomUsertext,selectRoomUser, setrooms,socket,setRoomsUser, RoomsUser, setselectRoom,setselectRoomtext,setselectRoomUser }) => {
+    // useEffect(() => { if (RoomsUser && RoomsUser.length > 0) { setselectRoomUser(RoomsUser[0].roomname);  } },[])
 
     useEffect(() => {
         // Initial load of rooms
@@ -27,7 +28,7 @@ const UserRooms = ({ setrooms,socket,setRoomsUser, RoomsUser, setselectRoom,sets
 
     return (
         <div>
-            <Rooms who="choose a room from your connected rooms" rooms={RoomsUser} setrooms={setrooms} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext}></Rooms>
+            <UserRoomsc selectRoomUsertext={selectRoomUsertext} setselectRoomUsertext={setselectRoomUsertext} setselectRoomUser={setselectRoomUser} selectRoomUser={selectRoomUser}who="choose a room to send from your connected rooms" rooms={RoomsUser} setrooms={setrooms} setselectRoom={setselectRoom} setselectRoomtext={setselectRoomtext}></UserRoomsc>
         </div>
     );
 };

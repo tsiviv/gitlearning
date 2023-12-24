@@ -9,25 +9,28 @@ const Addroom = ({ socket }) => {
   const socketRef = useRef(socket);
 
   useEffect(() => {
-    
+
     socket.on('added', (data) => {
       console.log("added");
       alert(data.message);
       setAlertMessage(data.message);
+      setNewRoom("")
     });
-    
+
     socket.on('roomExists', (data) => {
       console.log("roomExists");
       alert(data.message);
       setAlertMessage(data.message);
+      setNewRoom("")
     });
-   
+
 
   }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   const handleAddRoom = () => {
     // Assuming you have a socket instance
-    socket.emit('addroom', newRoom);
+    if (newRoom)
+      socket.emit('addroom', newRoom);
   };
 
   return (

@@ -27,7 +27,7 @@ const Invitations = ({ socket, selectUser }) => {
 
     return (
         <>
-            <Button onClick={talk}>send invetation to {selectUser}</Button>
+            <Button onClick={talk}>invite {selectUser}</Button>
             {flag ? (
                 <>
                     <Invitation
